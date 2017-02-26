@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var golCasa;
+        var golFora;
+        var nomeDoTecnico;
+        
+        var corinthians ={
+            nome: "Corinthians",
+            tecnico: 80,
+            ataque: 55,
+            defesa: 60,
+            meioDef: 72,
+            meioOfen: 68,
+            lateralDir: 70,
+            lateralEsq: 65,
+            goleiros: 80,
+            coesao: 80,
+            organizacao: 90,
+            sistemaDef: 80,
+            sistemaOfe: 40,
+            reservas: 40,
+            nivel: 3,
+            diretoria: 40
+        };
+        var palmeiras= {
+            nome: "Palmeiras",
+            tecnico: 60,
+            ataque: 80,
+            defesa: 83,
+            meioDef: 74,
+            meioOfen: 79,
+            lateralDir: 70,
+            lateralEsq: 69,
+            goleiros: 85,
+            coesao: 60,
+            organizacao: 60,
+            sistemaDef: 80,
+            sistemaOfe: 80,
+            reservas: 80,
+            nivel: 5,
+            diretoria: 90
+        };
+        
+        function partida (x, y){
+            var timeUm ={
+                nome: x.nome,
+                ponto: 0,
+                gols: 0
+            };
+            var timeDois = {
+                nome: y.nome,
+                ponto: 0,
+                gols: 0
+            };
+            
+            
+            //comparando tecnico
+            if (x.tecnico > y.tecnico){
+                timeUm.ponto++;
+            }
+            else if (x.tecnico < y.tecnico){
+                timeDois.ponto++;
+            }
+            
+            
+            //ataque contra defesa
+            if (x.ataque > y.defesa){
+                timeUm.ponto++;
+                timeDois.ponto--;
+            }
+            else if (x.ataque < y.defesa){
+                timeDois.ponto++;
+                timeUm.ponto--;
+            }
+            
+            //ataque comparando
+            if (x.ataque > y.ataque){
+                timeUm.ponto++;
+            }
+            else if (x.ataque < y.ataque){
+                timeDois.ponto++;
+            }
+            
+            
+            //comparando meioofe x meio def
+            if (x.meioDef > y.meioOfen){
+                timeUm.ponto++;
+                timeDois.ponto--;
+            }
+            else if (x.meioDef < y.meioOfen){
+                timeDois.ponto++;
+                timeUm.ponto--;
+            }
+            
+            
+            //comparando meioofe x meio ofe
+            if (x.meioOfen > y.meioOfen){
+                timeUm.ponto++;
+            }
+            else if (x.meioOfen < y.meioOfen){
+                timeDois.ponto++;
+            }
+            
+            //comparando meiodef x meio def
+            if (x.meioDef > y.meioDef){
+                timeUm.ponto++;
+            }
+            else if (x.meioDef < y.meioDef){
+                timeDois.ponto++;
+            }
+            
+            
+            
+            
+            
+            //lateral esquerda
+            if (x.lateralEsq > y.lateralEsq){
+                timeUm.ponto++;
+            }
+            else if (x.lateralEsq < y.lateralEsq){
+                timeDois.ponto++;
+            }
+            
+            
+            //lateral direito
+            if (x.lateralDir > y.lateralDir){
+                timeUm.ponto++;
+            }
+            else if (x.lateralDir < y.lateralDir){
+                timeDois.ponto++;
+            }
+            
+            //goleiros
+            if (x.goleiros > y.goleiros){
+                timeUm.ponto++;
+                timeDois.ponto--;
+                
+            }
+            else if (x.goleiros < y.goleiros){
+                timeDois.ponto++;
+                timeUm.ponto--;
+            }
+            //coesao
+            if (x.coesao > y.coesao){
+                timeUm.ponto++;
+            }
+            else if (x.coesao < y.coesao){
+                timeDois.ponto++;
+            }
+            
+            //organizacao
+            if (x.organizacao > y.organizacao){
+                timeUm.ponto++;
+                timeDois.ponto--;
+            }
+            else if (x.organizacao < y.organizacao){
+                timeDois.ponto++;
+                timeUm.ponto--;
+            }
+            
+            
+            //def x ataque
+            if (x.sistemaDef > y.sistemaOfe){
+                timeUm.ponto++;
+                timeDois.ponto--;
+            }
+            else if (x.sistemaDef < y.sistemaOfe){
+                timeDois.ponto++;
+                timeUm.ponto--;
+            }
+            
+            //sistema ofe
+            if (x.sistemaOfe > y.sistemaOfe){
+                timeUm.ponto++;
+            }
+            else if (x.sistemaOfe < y.sistemaOfe){
+                timeDois.ponto++;
+            }
+            
+            
+            //sistema def
+            if (x.sistemaDef > y.sistemaDef){
+                timeUm.ponto++;
+            }
+            else if (x.sistemaDef < y.sistemaDef){
+                timeDois.ponto++;
+            }
+            
+            //reservas 
+            if (x.reservas > y.reservas){
+                timeUm.ponto++;
+            }
+            else if (x.reservas < y.reservas){
+                timeDois.ponto++;
+            }
+            
+            //impossibilitando 0
+            if(timeUm.ponto<0){
+                timeUm.ponto=0;
+            }
+            if(timeDois.ponto<0){
+                timeDois.ponto=0;
+            }
+            
+            
+            
+            timeUm.gols=(Math.floor(Math.random() * x.nivel) - timeDois.ponto);
+            timeDois.gols= (Math.floor(Math.random() * y.nivel) - timeUm.ponto);
+            
+            if(timeUm.gols<0){
+                timeUm.gols=Math.floor(Math.random() * 2);
+            }
+            if(timeDois.gols<0){
+                timeDois.gols=Math.floor(Math.random() * 2);
+            }
+            
+            var resultado = timeUm.nome + " " + timeUm.gols + " x " + timeDois.gols +" "+ timeDois.nome 
+            return resultado;
+            
+
+        };
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
