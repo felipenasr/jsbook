@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>SUPER CAMPEONATO PAULISTA</title>
     <script>
         var golCasa;
         var golFora;
@@ -24,7 +24,29 @@
             sistemaOfe: 40,
             reservas: 40,
             nivel: 3,
+            torneio: 0,
+            partida: 0,
             diretoria: 40
+        };
+        var santos ={
+            nome: "Santos",
+            tecnico: 85,
+            ataque: 80,
+            defesa: 65,
+            meioDef: 77,
+            meioOfen: 78,
+            lateralDir: 70,
+            lateralEsq: 70,
+            goleiros: 75,
+            coesao: 80,
+            organizacao: 90,
+            sistemaDef: 80,
+            sistemaOfe: 60,
+            reservas: 60,
+            nivel: 5,
+            torneio: 0,
+            partida: 0,
+            diretoria: 70
         };
         var palmeiras= {
             nome: "Palmeiras",
@@ -42,9 +64,10 @@
             sistemaOfe: 80,
             reservas: 80,
             nivel: 5,
+            torneio: 0,
+            partida: 0,
             diretoria: 90
-        };
-        
+        };        
         var spfc= {
             nome: "São Paulo",
             tecnico: 70,
@@ -61,10 +84,16 @@
             sistemaOfe: 80,
             reservas: 30,
             nivel: 4,
+            torneio: 0,
+            partida: 0,
             diretoria: 90
         };
         
-        function partida (x, y){
+        function jogo (x, y){
+            x.partida = x.partida + 1;
+            y.partida = y.partida + 1;
+            
+            
             var timeUm ={
                 nome: x.nome,
                 ponto: 0,
@@ -232,19 +261,48 @@
             
             if(timeUm.gols<0){
                 timeUm.gols=Math.floor(Math.random() * 2);
+                if(x.ataque>69){
+                    timeUm.gols=Math.floor(Math.random() * 3);
+                }
             }
             if(timeDois.gols<0){
                 timeDois.gols=Math.floor(Math.random() * 2);
+                
+                if(y.ataque>69){
+                    timeDois.gols=Math.floor(Math.random() * 3);
+                }
             }
             
             var resultado = timeUm.nome + " " + timeUm.gols + " x " + timeDois.gols +" "+ timeDois.nome 
+            if(timeUm.gols>timeDois.gols){
+                x.torneio = x.torneio+ 3;
+            }
+            
+            if(timeUm.gols<timeDois.gols){
+                y.torneio = y.torneio+ 3;
+            }
+            if(timeUm.gols==timeDois.gols){
+                x.torneio = x.torneio + 1;
+                y.torneio = y.torneio + 1;
+            }
             return resultado;
             
 
         };
+        
+        
+        var showMessage;
+        
+        mostrarNome = function (message){
+            console.log("Olá " + message);
+        }
+        
+        nomeDoTecnico = "escreva";
+        mostrarNome(nomeDoTecnico);
+        
     </script>
 </head>
 <body>
-    
+    <h1>CAPITULO 8</h1>
 </body>
 </html>
